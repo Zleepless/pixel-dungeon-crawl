@@ -17,8 +17,24 @@ class World {
     return this.entities[0];
   }
 
-  isWall(x,y) {
-    return(worldmap)
+  moveToSpace(entity) {
+    for (let x = entity.x; x < this.width; x++) {
+      for (let y = entity.y; y < this.height; y++) {
+        if (this.worldmap[x][y] === 0) {
+          entity.x = x;
+          entity.y = y;
+          return;
+        }
+      }
+    }
+  }
+
+  isWall(x, y) {
+    return (
+      this.worldmap[x] === undefined ||
+      this.worldmap[y] === undefined ||
+      this.worldmap[x][y] === 1
+    );
   }
 
   movePlayer(dx, dy) {
